@@ -5,7 +5,6 @@ import { unparse } from 'papaparse';
 import download from 'js-file-download';
 import { createEvents } from 'ics';
 import type { Plan } from '@/types/plan';
-import { toError } from '@/lib/utils';
 
 export function exportPlanToPDF(plan: Plan) {
   const doc = new jsPDF({ unit: 'pt', format: 'a4' });
@@ -87,7 +86,7 @@ export function exportPlanToICS(plan: Plan) {
 
   const { error, value } = createEvents(events);
   if (error) {
-    console.error(toError(error));
+    console.error(error);
     return;
   }
   download(value ?? '', 'elfit-rookie-fuel-plan.ics');
