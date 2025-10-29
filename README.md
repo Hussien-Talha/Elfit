@@ -66,23 +66,6 @@ Create a `.env` file based on `.env.example` and provide `MONGODB_URI`.
 - Enable PWA caching via `next-pwa` (auto disabled in development).
 - Configure hosting (e.g., Vercel) with environment variables and MongoDB Atlas cluster.
 
-### Deploying to Vercel / Next.js App Platform
-
-1. Create a MongoDB Atlas cluster (or another accessible MongoDB deployment) and copy its connection string.
-2. In your Vercel project, add an environment variable named `MONGODB_URI` with that connection string (set it for "Preview" and "Production").
-3. Push your repository to GitHub with the included `package-lock.json` so the Vercel build can install dependencies without warnings.
-4. Trigger a deployment (e.g., via `git push`). Vercel will run `npm install`, `npm run build`, and host the serverless API route for MongoDB persistence automatically.
-5. After deployment, visit the live URL, generate a plan, and verify that the "Save to cloud" action succeeds (this confirms MongoDB connectivity).
-
-If you self-host with `npx next deploy`, ensure the same environment variable is exported before running the deploy command:
-
-```bash
-export MONGODB_URI="mongodb+srv://user:pass@cluster.mongodb.net/elfit"
-npx next deploy
-```
-
-The deploy command uploads the production build to the Next.js hosting platform once the build finishes locally.
-
 ### Pushing to GitHub
 
 1. [Create a new repository](https://github.com/new) or select an existing one.
