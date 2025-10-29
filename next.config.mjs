@@ -1,4 +1,4 @@
-const withPWAInit = require('next-pwa');
+import withPWA from 'next-pwa';
 
 const isProd = process.env.NODE_ENV === 'production';
 const isStaticExport = process.env.NEXT_STATIC_EXPORT === 'true';
@@ -14,24 +14,20 @@ const nextConfig = {
     remotePatterns: [],
     unoptimized: isStaticExport
   },
-  trailingSlash: isStaticExport
+  trailingSlash: isStaticExport,
+  ...(basePath
+    ? {
+        basePath,
+        assetPrefix: `${basePath}`
+      }
+    : {}),
+  ...(isStaticExport ? { output: 'export' } : {})
 };
 
-if (basePath) {
-  nextConfig.basePath = basePath;
-  nextConfig.assetPrefix = `${basePath}`;
-}
-
-if (isStaticExport) {
-  nextConfig.output = 'export';
-}
-
-const withPWA = withPWAInit({
+export default withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
   disable: !isProd,
   publicExcludes: isStaticExport ? ['!workbox-*.js', '!worker-*.js'] : undefined
-});
-
-module.exports = withPWA(nextConfig);
+})(nextConfig);
