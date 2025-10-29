@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import type { Plan } from '@/types/plan';
-import { toError } from '@/lib/utils';
 
 const STORAGE_KEY = 'elfit-last-plan';
 
@@ -20,7 +19,7 @@ export function useLocalPlan(plan: Plan | null) {
     try {
       return JSON.parse(raw) as Plan;
     } catch (error) {
-      console.error(toError(error));
+      console.error(error);
       return null;
     }
   }, []);

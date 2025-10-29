@@ -18,9 +18,6 @@ export function ensureMongoClient() {
       clientPromise = client.connect();
     }
   }
-  if (!clientPromise) {
-    throw new Error('Mongo client not initialized');
-  }
   return clientPromise;
 }
 

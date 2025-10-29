@@ -3,6 +3,7 @@ node_modules
 out
 pnpm-lock.yaml
 yarn.lock
+package-lock.json
 .env
 .DS_Store
 playwright-report
