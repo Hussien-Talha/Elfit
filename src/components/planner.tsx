@@ -5,7 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format, addDays, startOfWeek } from 'date-fns';
-import { DEFAULT_ATHLETE, DEFAULT_COMPETITION, toError } from '@/lib/utils';
+import { DEFAULT_ATHLETE, DEFAULT_COMPETITION } from '@/lib/utils';
 import {
   STANDARD_MACROS,
   LIGHT_MACROS,
@@ -246,9 +246,8 @@ export function Planner() {
       if (!response.ok) throw new Error('Request failed');
       setStatus('Saved securely');
     } catch (error) {
-      const normalized = toError(error);
-      console.error(normalized);
-      setStatus(`Save failed: ${normalized.message}`);
+      console.error(error);
+      setStatus('Save failed');
     }
   };
 
@@ -292,9 +291,8 @@ export function Planner() {
         setStatus('No saved plan yet');
       }
     } catch (error) {
-      const normalized = toError(error);
-      console.error(normalized);
-      setStatus(`Load failed: ${normalized.message}`);
+      console.error(error);
+      setStatus('Load failed');
     }
   };
 

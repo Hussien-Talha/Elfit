@@ -5,20 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function toError(error: unknown): Error {
-  if (error instanceof Error) {
-    return error;
-  }
-  if (typeof error === 'string') {
-    return new Error(error);
-  }
-  try {
-    return new Error(JSON.stringify(error));
-  } catch (jsonError) {
-    return new Error(String(error));
-  }
-}
-
 export const KG_TO_KCAL_RANGE = { min: 40, max: 45 };
 export const HYDRATION_ML_PER_KG = { min: 35, max: 40 };
 
